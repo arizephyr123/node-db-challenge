@@ -14,6 +14,7 @@ retrieving a list of tasks. The list of tasks should include the project name an
 When returning project or task information, the completed property should be true or false.
 */
 
+//✅
 //get all projects
 router.get("/api/projects", (req, res) => {
   Projects.findProjects()
@@ -25,6 +26,7 @@ router.get("/api/projects", (req, res) => {
     });
 });
 
+//✅
 //create new project
 router.post("/api/projects", (req, res) => {
   const newProj = req.body;
@@ -39,6 +41,7 @@ router.post("/api/projects", (req, res) => {
     });
 });
 
+//
 //get all tasks for project
 router.get("/api/projects/:id", (req, res) => {
   const { id } = req.params;
@@ -59,6 +62,7 @@ router.get("/api/projects/:id", (req, res) => {
     });
 });
 
+//
 //create new task
 router.post("/api/projects/:id", (req, res) => {
   const newTask = req.body;

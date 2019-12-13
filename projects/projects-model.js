@@ -27,11 +27,19 @@ where p.id = 2
 order by t.id;
 */
 function findTasks(id) {
-  db("projects as p");
-  select("select p.name", "t.description", "t.task_completed");
-  join("tasks as t", "p.id", "t.proj_id")
+  return db("projects as p")
+    .select("p.name", "t.description", "t.task_completed")
+    .join("tasks as t", "p.id", "t.proj_id")
     .where("p.id", id)
-    .orderBy("t.id");
+    .orderBy("t.id")
+    .then(tasks => {
+        const task = tasks[0];
+      if (task.task_completed === 1) {
+        return { ...task, task_completed: true }
+      } else {
+        return { ...task, task_completed: false };
+      }
+    });
 }
 
 function addResource(newResource) {
